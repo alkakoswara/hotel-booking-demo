@@ -143,6 +143,6 @@ if st.button('Nilai risiko booking ini', key='tombol_nilai'):
     with st.expander('Detail model'):
         st.markdown(f'- Skor batal: **{skor * 100:.1f}%**, skor tidak batal: **{(1 - skor) * 100:.1f}%**. Keduanya keluaran mentah model yang belum dikalibrasi untuk kohort H-1.')
         st.markdown('- Model: preprocessing (one-hot + passthrough) dan XGBoost, resep kandidat D, 12 fitur, dilatih pada 27.697 booking train kohort H-1. Disimpan sebagai dua file: preprocessing (joblib) dan model (format UBJ).')
-        st.markdown('- Hasil evaluasi tercatat: AP validation 0,108 (pembanding tebak mayoritas 0,025); generalisasi lintas waktu lemah, AP test 0,023.')
+        st.markdown('- Hasil evaluasi tercatat: AP validation 0,108 (patokan AP peringkat acak sekitar 0,025 (sesuai proporsi kasus positif validation)); generalisasi lintas waktu lemah, AP test 0,023.')
         st.markdown('- Model ini direkonstruksi dan diverifikasi di notebook proyek (Bagian 17); artefak asli tetap tersimpan utuh di laptop sebagai arsip.')
         st.markdown('- Batas: model demo untuk cerita proyek, bukan model yang terbukti layak dipakai hotel. Belum ada bukti bahwa meninjau booking berskor tinggi lebih berguna daripada peninjauan biasa; manfaat itu harus dibuktikan dulu sebelum pola kerja hotel diubah.')
