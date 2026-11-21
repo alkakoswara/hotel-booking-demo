@@ -14,6 +14,7 @@ The demo shows the raw model score for one booking. That score is not a calibrat
 | `preprocessing_d_demo.joblib` | Preprocessing step of the demo model (one-hot + passthrough) |
 | `model_d_demo.ubj` | The demo model (XGBoost, official save format) |
 | `requirements.txt` | Pinned packages for running the demo app |
+| `Dockerfile` | Recipe to build a Docker image that runs the demo app |
 | `hotel_booking_cancellation_h1_final.ipynb` | Project notebook: reasoning, analysis, results, and how the demo model was rebuilt and verified |
 
 ## The scenario
@@ -63,6 +64,19 @@ streamlit run app_demo_d.py
 ```
 
 `requirements.txt` covers only what the app needs to score a booking (inference), and was tested on Python 3.13.
+
+## Running the demo with Docker
+
+With Docker Desktop running (Linux containers), from the folder containing these files:
+
+```
+docker build -t hotel-booking-demo .
+docker run --rm -p 127.0.0.1:8501:8501 hotel-booking-demo
+```
+
+Then open http://localhost:8501 in a browser. The `-p 127.0.0.1:8501:8501` mapping exposes the app only to your own machine. Press Ctrl+C to stop the app; the `--rm` flag removes the container afterwards, while the image stays on disk for the next run.
+
+Tested on Windows 11 with Docker Desktop (WSL 2 backend). The container scored the example booking at 23.2%, the same number as the local and hosted runs; that was a single-input smoke test, not a full parity check across environments.
 
 ## Running the notebook
 
